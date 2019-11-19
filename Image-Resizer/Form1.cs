@@ -21,5 +21,10 @@ namespace Image_Resizer
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
