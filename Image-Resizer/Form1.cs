@@ -50,8 +50,8 @@ namespace Image_Resizer
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int width = Convert.ToInt32(this.width);
-            int height = Convert.ToInt32(this.height);
+            int width = Convert.ToInt32(this.width.Text);
+            int height = Convert.ToInt32(this.height.Text);
             image = Resize(image, width, height);
             ((Button) sender).Enabled = false;
             MessageBox.Show("Image has been resized successfully!");
@@ -64,6 +64,26 @@ namespace Image_Resizer
             graphic.DrawImage(image, 0, 0, width, height);
             graphic.Dispose();
             return bitmap;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int dot = 0, slash = 0;
+            for (int j = selectedPicturePath.Text.Length - 1; j >= 0; j--)
+            {
+                if (selectedPicturePath.Text[j] == '.')
+                {
+                    dot = j;
+                }
+                else if (selectedPicturePath.Text[j] == '\\')
+                {
+                    slash = j;
+                    break;
+                }
+            }
+            image.Save(savedPicturePath.Text + "\\" + selectedPicturePath.Text.Substring(slash + 1, dot - slash - 1) + extension[comboBox.SelectedIndex]);
+            ((Button) sender).Enabled = false;
+            MessageBox.Show("Image Saved Successfully!");
         }
     }
 }
