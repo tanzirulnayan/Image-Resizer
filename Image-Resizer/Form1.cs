@@ -36,7 +36,15 @@ namespace Image_Resizer
             {
                 selectedPicturePath.Text = openFileDialog.FileName;
                 image = Image.FromFile(openFileDialog.FileName);
+            }
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                savedPicturePath.Text = folderBrowserDialog.SelectedPath;
             }
         }
     }
