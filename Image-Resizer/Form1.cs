@@ -20,16 +20,23 @@ namespace Image_Resizer
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             for (int i = 0; i < extension.Length; i++)
             {
                 comboBox.Items.Add(extension[i]);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "images | *.png;*.jpg;*.jpeg;*.gif";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                selectedPicturePath.Text = openFileDialog.FileName;
+                image = Image.FromFile(openFileDialog.FileName);
+
             }
         }
     }
