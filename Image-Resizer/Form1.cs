@@ -47,5 +47,23 @@ namespace Image_Resizer
                 savedPicturePath.Text = folderBrowserDialog.SelectedPath;
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int width = Convert.ToInt32(this.width);
+            int height = Convert.ToInt32(this.height);
+            image = Resize(image, width, height);
+            ((Button) sender).Enabled = false;
+            MessageBox.Show("Image has been resized successfully!");
+        }
+
+        Image Resize(Image image, int width, int height)
+        {
+            Bitmap bitmap = new Bitmap(width, height);
+            Graphics graphic = Graphics.FromImage(bitmap);
+            graphic.DrawImage(image, 0, 0, width, height);
+            graphic.Dispose();
+            return bitmap;
+        }
     }
 }
